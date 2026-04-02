@@ -49,7 +49,9 @@ export default function App() {
                   </Text>
 
                   <Text className="home-balance-date">
-                    {dayjs(HOME_BALANCE.nextRenewalDate).format("MM/DD")}
+                    {dayjs(HOME_BALANCE.nextRenewalDate).isValid()
+                      ? dayjs(HOME_BALANCE.nextRenewalDate).format("MM/DD")
+                      : "Not provided"}
                   </Text>
                 </View>
               </View>
@@ -72,7 +74,7 @@ export default function App() {
                   }
                 />
               </View>
-              <ListHeading title="All Subscription" />
+              <ListHeading title="All Subscriptions" />
             </>
           )}
           data={HOME_SUBSCRIPTIONS}
