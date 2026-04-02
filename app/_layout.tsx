@@ -1,6 +1,9 @@
 import "@/global.css";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
+import { useEffect } from "react";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontLoaded] = useFonts({
@@ -11,6 +14,12 @@ export default function RootLayout() {
     "sans-bold": require("../assets/fonts/PlusJakartaSans-Bold.ttf"),
     "sans-extrabold": require("../assets/fonts/PlusJakartaSans-ExtraBold.ttf"),
   });
+
+  useEffect(() => {
+    if (fontLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontLoaded]);
 
   if (!fontLoaded) {
     return null;

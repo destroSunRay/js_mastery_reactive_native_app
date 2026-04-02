@@ -5,15 +5,16 @@ import { Tabs } from "expo-router";
 import { Image, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+const TabIcon = ({ icon, focused }: TabIconProps) => (
+  <View className="tabs-icon">
+    <View className={clsx("tabs-pill", focused && "tabs-active")}>
+      <Image source={icon} className="tabs-glyph" />
+    </View>
+  </View>
+);
+
 export const TabLayout = () => {
   const insets = useSafeAreaInsets();
-  const TabIcon = ({ icon, focused }: TabIconProps) => (
-    <View className="tabs-icon">
-      <View className={clsx("tabs-pill", focused && "tabs-active")}>
-        <Image source={icon} className="tabs-glyph" />
-      </View>
-    </View>
-  );
   const { tabBar } = components;
   return (
     <Tabs
